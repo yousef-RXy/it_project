@@ -36,6 +36,8 @@
   <br>
   <a href="./episodes.php?id=<?php echo $id; ?>">episodes</a>
   <br>
+  <a href="./FAQuser.php">FAQuser</a>
+  <br>
   <a href="./password.php">password</a>
   <br>
   <a href="./photos.php?id=<?php echo $id; ?>">photos</a>
