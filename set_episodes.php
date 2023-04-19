@@ -12,8 +12,7 @@
       }
       $dest = "./uploads/episodes/$id/".$file_name;
       move_uploaded_file($_FILES['file']['tmp_name'], $dest);
-      $mysqli = new mysqli($hostname, $dbuser, $dbuserpassword, $dbname);
-      $mysqli->query("INSERT INTO episodes (id, name, path) VALUES ($id,'$ep_name','$dest')");
+      $conn->query("INSERT INTO episodes (id, name, path) VALUES ($id,'$ep_name','$dest')");
     }
   }
 ?>

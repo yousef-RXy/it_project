@@ -42,6 +42,8 @@
   <br>
   <a href="./set_episodes.php?id=<?php echo $id; ?>">set_episodes</a>
   <br>
+  <a href="./view.php?id=<?php echo $id; ?>">view</a>
+  <br>
   <?php set_comment()?>
   <br>
 </body>
