@@ -93,18 +93,20 @@ function file_ex($allowed_exs,&$file_name,$start_name){
     return 0;
   }
 }
-function set_comment(){
+function set_comment($page,$id_page){
   global $connection, $conn,$id;
   $iduser=$_COOKIE["id"];
   $sql = "SELECT username FROM users WHERE id=$iduser";
   $statement =  $connection->prepare($sql);
   $statement-> execute();
-  $username =$statement-> fetch()['username'];
+  $username = $statement-> fetch()['username'];
   if(isset($_POST['post_comment'])){
     $comment=$_POST['comment'];
     $sql = "INSERT INTO comments_table (id,name,comment) VALUES ($id,'$username','$comment')"; 
     if ($conn->query($sql) === TRUE) {
       message('New record created successfully!', 'green');
+      header("Location: ./$page.php?id=$id_page");
+      exit();
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;//why?
     }

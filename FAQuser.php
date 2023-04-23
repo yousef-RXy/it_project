@@ -1,6 +1,6 @@
 <?php require_once('config.php') ?>
 <?php
-  if (isset($_POST['add-question'])) {
+  if (isset($_POST['add_question'])) {
     $question = $_POST["question"];
     $sql = "INSERT INTO faq (q) VALUE ('$question')";
     mysqli_query($conn , $sql);
@@ -22,7 +22,7 @@
     Do you have any questions ?<br>
     <input type="text" name="question" placeholder="entre your question here" >
     <br>
-    <input type="submit" name="add-question" value="add question">
+    <input type="submit" name="add_question" value="add question">
   </form>
   <hr>
   <table>

@@ -30,23 +30,19 @@
 
   <a href="./+move_series.php">+move_series</a>
   <br>
-  <a href="./cast.php?id=<?php echo $id; ?>">cast</a>
+  <a href="./com.php">com</a>
   <br>
   <a href="./data.php">data</a>
   <br>
-  <a href="./episodes.php?id=<?php echo $id; ?>">episodes</a>
+  <a href="./FAQadmin.php">FAQadmin</a>
   <br>
   <a href="./FAQuser.php">FAQuser</a>
   <br>
   <a href="./password.php">password</a>
   <br>
-  <a href="./photos.php?id=<?php echo $id; ?>">photos</a>
-  <br>
   <a href="./set_episodes.php?id=<?php echo $id; ?>">set_episodes</a>
   <br>
   <a href="./view.php?id=<?php echo $id; ?>">view</a>
-  <br>
-  <?php set_comment()?>
   <br>
 </body>
 </html>

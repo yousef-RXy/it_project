@@ -5,16 +5,16 @@ $id=$_GET['id'];
 $sql = "SELECT * FROM movie WHERE id=$id";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-$row = $result->fetch_assoc();
-$rate = $row["rating"];
-$num = $row ["rating_times"] ;
-$title = $row["name"];
-$descraption = $row ["description"] ;
-$date= $row ["Director"];
-$poster = $row["photo_path"];
-$Trailer = $row ["trailer_path"] ;
+  $row = $result->fetch_assoc();
+  $rate = $row["rating"];
+  $num = $row ["rating_times"] ;
+  $title = $row["name"];
+  $descraption = $row ["description"] ;
+  $date= $row ["Director"];
+  $poster = $row["photo_path"];
+  $Trailer = $row ["trailer_path"] ;
 } else {
-echo "0 results";
+  echo "0 results";
 }
 if(isset($_POST['rate'])) {
   $Result = number_format(($_POST['num'] + ($rate*$num))/($num+1),1);
@@ -125,13 +125,31 @@ else {
         rating
         <input type="number" min="0" max="10" step=".5" name="num" required> <br> <br>
         <input type="submit" value="submit" name="rate">
-      </form> <br>
-
+      </form> 
+      <br>
       <p>date: <span><?php echo $date ?></span> </p> 
       <p>rating: <span>
       <?php
         echo $Result;
       ?></span> </p>
+      <a href="./cast.php?id=<?php echo $id; ?>">cast</a>
+      <br>
+      <a href="./episodes.php?id=<?php echo $id; ?>">episodes</a>
+      <br>
+      <a href="./photos.php?id=<?php echo $id; ?>">photos</a>
+      <br>
+      <div class="comments">
+      <?php
+          $sql = "SELECT * FROM comments_table WHERE id=$id";
+          $result = $conn -> query($sql);
+          while($row = $result-> fetch_assoc()) {
+            echo "<h2>". $row['name']."</h2>";
+            echo $row['comment'] . "<br><br>";
+          } 
+          set_comment("view",$id)
+        ?>
+        <br>
+      </div>
     </div>
   </main>
 </body>
