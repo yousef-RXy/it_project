@@ -38,8 +38,6 @@
   <br>
   <a href="./password.php">password</a>
   <br>
-  <a href="./set_episodes.php?id=<?php echo $id; ?>">set_episodes</a>
-  <br>
   <a href="./view.php?id=<?php echo $id; ?>">view</a>
   <br>
 </body>
