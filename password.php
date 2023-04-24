@@ -1,24 +1,16 @@
 <?php require_once('config.php') ?>
-<?php $page_title = 'Update an user password'; ?>
-<?php $page_heading = 'User password Updating'; ?>
 
-
-<!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
   <meta charset="utf-8">
-  <title><?php echo $page_title; ?></title>
-
+  <title>User password Updating</title>
+  <link rel="stylesheet" href="style.css"/>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
 </head>
 
-<body>
-  <h1> <?php echo $page_heading; ?> </h1>
-  <p> <a href="index.php">Go back to the homepage</a> </p>
-
+<body class="body_form">
   <?php
   $id=$_COOKIE['id'];
-
   $sql = "SELECT * FROM users WHERE id=:id";
   $statement =  $connection->prepare($sql);
   $statement->bindValue(":id", $id);
@@ -31,7 +23,8 @@
         $sql = "UPDATE users SET password=$password WHERE id=$id";
         $statement = $connection->prepare($sql);
         $statement->execute();
-        message("Your password had updated succesfully", "green");
+        header("Location: ./password.php");
+        exit();
       }else {
         message("Your new password didn't match the confirm password", "red");
       }
@@ -41,17 +34,28 @@
   }
 ?>
 
-  <form action="" method="POST">
-    <label for="oldpassword">Old Password</label>
-    <input type="password" name="oldpassword" required>
-    <br><br>
-    <label for="password">New Password</label>
-    <input type="password" name="password" required>
-    <br><br>
-    <label for="confirm">Confirm Password</label>
-    <input type="password" name="confirm" required>
-    <br><br>
-    <input type="submit" name="submit" value="Save your password">
+  <form action="" method="POST" class="form">
+    <div class="title">Update user password</div>
+    
+    <div class="input-container">
+      <input type="password" placeholder=" " class="input" name="oldpassword" required>
+      <div style="width: 110px" class="cut_f"></div>
+      <label for="oldpassword" class="placeholder">Old Password</label>
+    </div>
+    
+    <div class="input-container">
+      <input type="password" placeholder=" " class="input" name="password" required>
+      <div style="width: 117px" class="cut"></div>
+      <label class="placeholder" for="password">New Password</label>
+    </div>
+
+    <div class="input-container">
+      <input type="password" placeholder=" " class="input" name="confirm" required>
+      <div style="width: 137px" class="cut"></div>
+      <label for="confirm" class="placeholder">Confirm Password</label>
+    </div>
+    
+    <input type="submit" name="submit" value="Save your password" class="submit">
   </form>
 
 </body>

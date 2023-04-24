@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <title>Document</title>
 </head>
 <?php
@@ -15,6 +17,26 @@
   $data=$statement->fetchAll();
 ?>
 <body>
+  <div class="header">
+  <?php 
+    $id_user=$_COOKIE["id"];
+    $sql = "SELECT admin FROM users WHERE id=$id_user";
+    $result_user = $conn->query($sql)->fetch_assoc();
+    if($result_user["admin"]):
+  ?>
+  <form method="POST">
+    <button name="add">
+      <span class="material-symbols-outlined">add</span>
+    </button>
+  </form>
+  <?php
+    endif;
+    if(isset($_POST["add"])){
+      header("Location: ./+cast.php?id=$id");
+      exit();
+    }
+  ?>
+  </div>
   <table>
     <tr>
       <th>

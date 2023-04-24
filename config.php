@@ -35,18 +35,19 @@ function updateuserdata(){
     $sql = "UPDATE users SET username=:username ,email=:email WHERE id=:id";
     $statement = $connection->prepare($sql);
     $statement->execute($userset);
-    message("Your data saved successfully", "green");
+    header("Location: ./data.php");
+    exit();
   }
   else{
     message("this user name/email exist", "red");
   }
 }
-function set_image($table, $id_check,$dir, $name=null, $description=null,$file_name=null) {
-  global $connection,$id,$photo_ext;
+function set_image($table, $check,$dir, $id,$file_name=null) {
+  global $connection,$photo_ext;
   if (!file_exists("./uploads/$dir")) {
     mkdir("./uploads/$dir", 0777, true);
   }
-  if ($id_check) {
+  if ($check) {
     for ($x = 0; $x < sizeof($_FILES['photos']['name']); $x++) {
       $file_name=$_FILES['photos']['name'][$x];
       if (file_ex($photo_ext,$file_name,$dir)) {
@@ -65,12 +66,12 @@ function set_image($table, $id_check,$dir, $name=null, $description=null,$file_n
     if (file_ex($photo_ext,$file_name,$dir)) {
       $dest = "./uploads/$dir/".$file_name;
       move_uploaded_file($_FILES[$dir]['tmp_name'], $dest);
-      $sql = "UPDATE $table SET photo_path='$dest' WHERE name='$name' AND description='$description'";
+      $sql = "UPDATE $table SET photo_path='$dest' WHERE id=$id";
       $connection->prepare($sql)->execute();
     }
   }
 };
-function set_video($name,$description,$dir){
+function set_video($id,$dir){
   global $connection,$video_ext;
   $file_name=$_FILES[$dir]['name'];
   if (file_ex($video_ext,$file_name,'trailer')) {
@@ -79,7 +80,7 @@ function set_video($name,$description,$dir){
     }
     $dest = "./uploads/$dir/".$file_name;
     move_uploaded_file($_FILES[$dir]['tmp_name'], $dest);
-    $sql = "UPDATE movie SET trailer_path='$dest' WHERE name='$name' AND description='$description'";
+    $sql = "UPDATE movie SET trailer_path='$dest' WHERE id=$id";
     $connection->prepare($sql)->execute();
   }
 }

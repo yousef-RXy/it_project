@@ -1,6 +1,5 @@
 <?php 
 require_once './config.php';
-// $(".myform")[0].reset();
 $id=$_GET['id'];
 $sql = "SELECT * FROM movie WHERE id=$id";
 $result = $conn->query($sql);
@@ -10,9 +9,10 @@ if ($result->num_rows > 0) {
   $num = $row ["rating_times"] ;
   $title = $row["name"];
   $descraption = $row ["description"] ;
-  $date= $row ["Director"];
+  $date= $row ["date"];
   $poster = $row["photo_path"];
   $Trailer = $row ["trailer_path"] ;
+  $movie = $row["movie"];
 } else {
   echo "0 results";
 }
@@ -134,8 +134,14 @@ else {
       ?></span> </p>
       <a href="./cast.php?id=<?php echo $id; ?>">cast</a>
       <br>
-      <a href="./episodes.php?id=<?php echo $id; ?>">episodes</a>
-      <br>
+      <?php 
+        if (!$movie) {
+          echo " 
+            <a href='./episodes.php?id=$id'>episodes</a>
+            <br>
+          ";
+        }
+      ?>
       <a href="./photos.php?id=<?php echo $id; ?>">photos</a>
       <br>
       <div class="comments">
