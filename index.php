@@ -30,13 +30,11 @@
 
   <a href="./+move_series.php">+move_series</a>
   <br>
-  <a href="./com.php">com</a>
-  <br>
-  <a href="./data.php">data</a>
-  <br>
   <a href="./FAQadmin.php">FAQadmin</a>
   <br>
   <a href="./FAQuser.php">FAQuser</a>
+  <br>
+  <a href="./data.php">data</a>
   <br>
   <a href="./password.php">password</a>
   <br>
