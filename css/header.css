@@ -1,0 +1,119 @@
+/* Start Global Rules */
+*,
+*::after,
+*::before {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: sans-serif;
+}
+ul {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+.containeer {
+	width: 1200px;
+	margin: 0 auto;
+}
+/* End Global Rules */
+
+/* Start Header */
+header {
+	background-color: #0f2133;
+	position: sticky;
+	z-index: 1000000;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 7px 0;
+}
+
+header .containeer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+header .logo a {
+	color: white;
+	font-size: 25px;
+}
+header .logo a span:first-of-type {
+	color: #cca300;
+}
+header .logo a span:last-child {
+	color: #dd003f;
+}
+header ul {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+}
+header ul li a {
+	color: #abb7c4;
+	text-transform: capitalize;
+	font-weight: bold;
+	font-size: 14px;
+	transition: 0.3s all linear;
+}
+header ul li.logout a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 20px;
+	border-radius: 10px;
+	background-color: #007bff;
+	color: white;
+	margin-left: 50px;
+}
+header ul li.logout a svg {
+	margin-left: 5px;
+}
+header ul li.logout a svg {
+	width: 20px;
+}
+header ul li a:hover {
+	color: #cca300;
+}
+header ul li.logout a:hover {
+	background-color: #0062cc;
+	color: white;
+}
+/* End Header */
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	padding: 0px 30px;
+}
+
+.header form {
+	display: flex;
+	align-content: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.header button {
+	border: none;
+	text-decoration: none;
+	cursor: pointer;
+	background: none;
+}
+
+.header button span {
+	font-size: 45px;
+	transform: translate(0px, 3px);
+}
+
+footer {
+	background-color: #f6f6f6;
+	padding: 20px;
+	text-align: center;
+	border-top: 1px solid #ccc;
+}

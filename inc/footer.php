@@ -1,0 +1,7 @@
+
+
+
+<footer>
+    &copy; All Rights Reserved 
+</footer>
+

@@ -1,0 +1,169 @@
+/* Start Global Rules */
+:root {
+	--main-color: #0f2133;
+	--secondary-color: #dd003f;
+	--yellow-color: #dcf836;
+}
+
+.container {
+	width: 1200px;
+	margin: 0 auto;
+}
+/* End Global Rules */
+
+/* Start Main */
+main.home {
+	background-image: url(../images/header-img.65e5cf8d.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	padding: 60px 0;
+}
+/* End Main */
+
+/* Start Slider */
+.slider .container {
+	overflow: hidden;
+}
+.slider .container h2 {
+	color: white;
+	margin-bottom: 20px;
+}
+.slider .slider-container {
+	width: 250%;
+	display: flex;
+	gap: 50px;
+	transition: 0.3s all linear;
+}
+.slider .slider-item {
+	width: calc(100% / 10);
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+}
+.slider .slider-item .img {
+	overflow: hidden;
+	border-radius: 15px;
+}
+.slider .slider-item img {
+	max-width: 100%;
+	border-radius: inherit;
+	filter: grayscale(100%);
+	transition: 0.3s all linear;
+}
+.slider .slider-item h4 {
+	color: white;
+	margin-top: 13px;
+	transition: 0.3s all linear;
+}
+.slider .slider-item .rating {
+	clip-path: polygon(
+		50% 0%,
+		61% 35%,
+		98% 35%,
+		68% 57%,
+		79% 91%,
+		50% 70%,
+		21% 91%,
+		32% 57%,
+		2% 35%,
+		39% 35%
+	);
+	background-color: var(--yellow-color);
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	top: 10px;
+	right: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 14px;
+	font-weight: bold;
+}
+.slider .controls {
+	display: flex;
+	margin-left: auto;
+	width: -moz-fit-content;
+	width: fit-content;
+	color: white;
+	margin-top: 30px;
+	margin-right: 25px;
+	font-size: 50px;
+	gap: 15px;
+}
+.slider .controls div ion-icon.disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}
+.slider .controls div ion-icon {
+	cursor: pointer;
+}
+.slider .slider-item:hover img {
+	filter: grayscale(0);
+	transform: scale(1.2);
+}
+.slider .slider-item:hover h4 {
+	color: var(--yellow-color);
+}
+
+/* End Slider */
+/* Start Movies And Series Slider */
+.moviesAndSeries {
+	background-color: #f2f6f8;
+	padding: 100px 0;
+}
+.moviesAndSeries .slider h2 {
+	color: var(--main-color);
+}
+.moviesAndSeries .slider h4 {
+	color: var(--main-color);
+}
+.moviesAndSeries .slider .slider-item:hover h4 {
+	color: var(--secondary-color);
+}
+.moviesAndSeries .slider .controls {
+	color: var(--main-color);
+}
+/* End Movies And Series Slider */
+
+/* Start Search bar */
+
+.search-form {
+	display: flex;
+	margin-bottom: 60px;
+}
+.search-form input {
+	flex: 1;
+	background-color: var(--main-color);
+	border: none;
+	outline: none;
+	padding: 15px 10px;
+	color: #abb7c4;
+	border-radius: 20px 0px 0px 20px;
+}
+.search-form input::placeholder {
+	color: #abb7c4;
+}
+.search-form button {
+	background-color: #5e5979;
+	border: none;
+	outline: none;
+	color: white;
+	border-radius: 0 20px 20px 0px;
+	padding: 0 30px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.3s all linear;
+	display: flex;
+	align-items: center;
+}
+.search-form button svg {
+	width: 20px;
+	margin-left: 10px;
+}
+
+.search-form button:hover {
+	background-color: #343c56;
+}
+
+/* End Search bar */

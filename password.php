@@ -4,13 +4,16 @@
 <head>
   <meta charset="utf-8">
   <title>User password Updating</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="./css/stylejn.css"/>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
 </head>
 
-<body class="body_form">
+<body>
+  <?php include "./inc/header.php" ?>
+
   <?php
-  $id=$_COOKIE['id'];
+  $id=$_SESSION['id'];
   $sql = "SELECT * FROM users WHERE id=:id";
   $statement =  $connection->prepare($sql);
   $statement->bindValue(":id", $id);
@@ -32,7 +35,7 @@
       message("Your your old password is not correct", "red");
     }
   }
-?>
+  ?>
 
   <form action="" method="POST" class="form">
     <div class="title">Update user password</div>
@@ -58,6 +61,7 @@
     <input type="submit" name="submit" value="Save your password" class="submit">
   </form>
 
+  <?php include "./inc/footer.php" ?>
 </body>
 
 </html>

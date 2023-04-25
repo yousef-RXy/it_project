@@ -12,14 +12,18 @@
   }
   $photo_ext = ['png', 'jpg', 'jpeg', 'gif'];
   $video_ext = ['mp4', 'webm', 'avi', 'flv'];
+  session_start();
+  
 ?>
 
 <?php 
 function message($s,$color){
-  echo ("<div style='background:$color;color:white;padding:10px;'>
-          <p>$s</p>
-        </div>
-        <br>"); 
+  echo (" 
+          <div style='background:$color;color:white;padding:10px;'>
+            <p>$s</p>
+          </div>
+          <br>
+      "); 
 }
 function updateuserdata(){
   global $connection,$id,$userset;
@@ -32,11 +36,21 @@ function updateuserdata(){
   if (empty($user_all)&&($userset['username']!=$username||$userset['email']!=$email)) {
     $userset['username'] = $_POST['username'];
     $userset['email'] = $_POST['email'];
-    $sql = "UPDATE users SET username=:username ,email=:email WHERE id=:id";
-    $statement = $connection->prepare($sql);
-    $statement->execute($userset);
-    header("Location: ./data.php");
-    exit();
+    if(filter_var($userset['email'], FILTER_VALIDATE_EMAIL)){
+      if(preg_match('/^[a-zA-Z0-9]+$/',$userset['username'])){
+        $sql = "UPDATE users SET username=:username ,email=:email WHERE id=:id";
+        $statement = $connection->prepare($sql);
+        $statement->execute($userset);
+        header("Location: ./data.php");
+        exit();
+      }
+      else{
+        message("this user name must contain just letters and numpers", "red");
+      }
+    }
+    else{
+      message("the email is not valid", "red");
+    }
   }
   else{
     message("this user name/email exist", "red");
@@ -96,7 +110,7 @@ function file_ex($allowed_exs,&$file_name,$start_name){
 }
 function set_comment($page,$id_page){
   global $connection, $conn,$id;
-  $iduser=$_COOKIE["id"];
+  $iduser=$_SESSION["id"];
   $sql = "SELECT username FROM users WHERE id=$iduser";
   $statement =  $connection->prepare($sql);
   $statement-> execute();

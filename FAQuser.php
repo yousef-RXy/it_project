@@ -15,8 +15,11 @@
 <head>
   <meta charset="UTF-8">
   <title>FAQs</title>
+  <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
+<?php include "./inc/header.php" ?>
+
   <h3>FAQs</h3>
   <form action="FAQuser.php" method="post">
     Do you have any questions ?<br>
@@ -50,6 +53,8 @@
       ?>
     </tbody>
   </table>
+
+  <?php include "./inc/footer.php" ?>
 </body>
 </html>
 

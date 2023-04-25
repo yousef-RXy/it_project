@@ -82,7 +82,7 @@ CREATE TABLE `movie` (
   `trailer_path` text NOT NULL,
   `photo_path` text NOT NULL,
   `description` text NOT NULL,
-  `Director` text NOT NULL,
+  `date` date NOT NULL,
   `rating` int(11) NOT NULL DEFAULT 0,
   `rating_times` int(11) NOT NULL DEFAULT 0,
   `movie` int(11) NOT NULL DEFAULT 1

@@ -31,6 +31,8 @@ else {
 <html>
 <head>
   <title>Movie Title</title>
+  <link rel="stylesheet" href="css/header.css">
+
   <style>
     body {
       margin: 0;
@@ -110,6 +112,8 @@ else {
   </style>
 </head>
 <body>
+<?php include "./inc/header.php" ?>
+
   <header>
     <div id="logo"><?php echo $title ?></div>
   </header>
@@ -158,6 +162,8 @@ else {
       </div>
     </div>
   </main>
+
+  <?php include "./inc/footer.php" ?>
 </body>
 </html>
 
