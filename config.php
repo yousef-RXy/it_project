@@ -19,7 +19,7 @@
 <?php 
 function message($s,$color){
   echo (" 
-          <div style='background:$color;color:white;padding:10px;'>
+          <div style='margin:25px auto 0;border-radius:12px;background:$color;color:white;padding:10px;'>
             <p>$s</p>
           </div>
           <br>

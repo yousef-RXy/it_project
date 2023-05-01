@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2023 at 05:03 PM
+-- Generation Time: May 01, 2023 at 09:14 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -69,7 +69,6 @@ CREATE TABLE `faq` (
   `ans` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
 -- --------------------------------------------------------
 
 --
@@ -83,9 +82,9 @@ CREATE TABLE `movie` (
   `photo_path` text NOT NULL,
   `description` text NOT NULL,
   `date` date NOT NULL,
-  `rating` int(11) NOT NULL DEFAULT 0,
+  `rating` float NOT NULL DEFAULT 0,
   `rating_times` int(11) NOT NULL DEFAULT 0,
-  `movie` int(11) NOT NULL DEFAULT 1
+  `movie` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -108,14 +107,20 @@ CREATE TABLE `photos` (
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` text NOT NULL,
-  `email` text NOT NULL,
   `password` text NOT NULL,
+  `email` text NOT NULL,
   `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `faq`
+--
+ALTER TABLE `faq`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `movie`
@@ -127,13 +132,17 @@ ALTER TABLE `movie`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`) USING HASH,
-  ADD UNIQUE KEY `username_2` (`username`) USING HASH;
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `faq`
+--
+ALTER TABLE `faq`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `movie`
@@ -145,7 +154,7 @@ ALTER TABLE `movie`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

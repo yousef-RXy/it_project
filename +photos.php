@@ -6,6 +6,7 @@
   $title = $result["name"];
 ?>
 
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -19,6 +20,25 @@
 
 <body class="body_form">
   <?php include "./inc/header.php" ?>
+
+  <?php
+    $check=0;
+    if (isset($_POST['submit'])) {
+      for ($x = 0; $x < sizeof($_FILES['photos']['name']); $x++) {
+        $file_name = $_FILES['photos']['name'][$x];
+        if (!file_ex($photo_ext, $file_name, 'photos')) {
+          $check++;
+        }
+      }
+      if ($check != 0) {
+        message("the extention of the file is not valid", "red");
+      } else {
+        set_image('photos', 1, 'photos',$id);
+        header("Location: ./photos.php?id=$id");
+        exit();
+      }
+    }
+  ?>
 
   <form class="form" action="" method="POST" enctype="multipart/form-data">
     <div class="title">Add photo to<span class="film-name"><?php echo $title ?></span></div>
@@ -35,11 +55,3 @@
   <?php include "./inc/footer.php" ?>
 </body>
 </html>
-
-<?php
-  if (isset($_POST['submit'])) {
-    set_image('photos', 1, 'photos',$id);
-    header("Location: ./photos.php?id=$id");
-    exit();
-  }
-?>

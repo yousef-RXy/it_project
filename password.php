@@ -21,15 +21,20 @@
   $user =  $statement-> fetch(PDO::FETCH_ASSOC);
   if (isset($_POST['submit'])){
     if ($user['password'] == $_POST['oldpassword']) {
-      if ($_POST['password'] == $_POST['confirm']) {
-        $password = $_POST['password'];
-        $sql = "UPDATE users SET password=$password WHERE id=$id";
-        $statement = $connection->prepare($sql);
-        $statement->execute();
-        header("Location: ./password.php");
-        exit();
-      }else {
-        message("Your new password didn't match the confirm password", "red");
+      if (strlen($_POST['password']) > 7) {
+        if ($_POST['password'] == $_POST['confirm']) {
+          $password = $_POST['password'];
+          $sql = "UPDATE users SET password=$password WHERE id=$id";
+          $statement = $connection->prepare($sql);
+          $statement->execute();
+          header("Location: ./password.php");
+          exit();
+        }else {
+          echo $_POST['password'];
+          message("Your new password didn't match the confirm password", "red");
+        }
+      } else {
+        message("Your new password is less than 8 characters", "red");
       }
     }else{
       message("Your your old password is not correct", "red");

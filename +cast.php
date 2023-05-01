@@ -25,13 +25,13 @@
 
     <div style="margin-top: 40px" class="input-container" >
       <input name="name" class="input" type="text" placeholder=" " required/>
-      <div style="width: 43px" class="cut"></div>
+      <div style="width: 55px" class="cut"></div>
       <label for="name" class="placeholder">name</label>
     </div>
 
     <div class="input-container">
       <input name="role" class="input" type="text" placeholder=" " required/>
-      <div style="width: 90px" class="cut"></div>
+      <div style="width: 43px" class="cut"></div>
       <label for="role" class="placeholder">role</label>
     </div>
 

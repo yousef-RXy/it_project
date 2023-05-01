@@ -8,6 +8,7 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/styleya.css">
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,8 +18,8 @@
 <body>
   <?php include "./inc/header.php" ?>
   
-  <table border="1">
-    <caption><h3>user's questions</h3></caption>
+  <table class="adminfaq">
+    <caption class="admin-caption"><h3>user's questions</h3></caption>
     <thead>
       <tr>
         <th>Question</th>

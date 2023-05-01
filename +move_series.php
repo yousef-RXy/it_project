@@ -14,6 +14,38 @@
 <body>
   <?php include "./inc/header.php" ?>
 
+  <?php
+    if (isset($_POST['submit'])) {
+      $poster_ext=strtolower(pathinfo($_FILES['poster']['name'], PATHINFO_EXTENSION));
+      $trailer_ext=strtolower(pathinfo($_FILES['trailer']['name'], PATHINFO_EXTENSION));
+      if (in_array($poster_ext, $photo_ext) && in_array($trailer_ext, $video_ext)) {
+        $new = array('name' => $_POST['title'], 'description' => $_POST['description'], 'date' => $_POST['date']);
+        $keys_string = implode(', ', array_keys($new));
+        $keys_placeholder = ':' . implode(', :', array_keys($new));
+        $sql = (sprintf("INSERT INTO movie (%s) VALUES (%s)", $keys_string, $keys_placeholder));
+        $connection->prepare($sql)->execute($new);
+        $name=$_POST['title'];
+        $date=$_POST['date'];
+        $sql = "SELECT id FROM movie WHERE name='$name' AND date='$date'";
+        $statement =  $connection->prepare($sql);
+        $statement-> execute();
+        $id =$statement-> fetch()["id"];
+        set_image('movie',0,'poster',$id);
+        set_video($id, 'trailer');
+        set_image('photos', 1, 'photos',$id);
+        if (!$_POST['type']) {
+          $sql = "UPDATE movie SET movie=0 WHERE id=$id";
+          $connection->prepare($sql)->execute();
+        }
+        header("Location: ./view.php?id=$id");
+        exit();
+      }
+      else {
+        message("the extention of the poster/trailer is not valid", "red");
+      }
+    }
+  ?>
+
   <form class="form" action="" method="POST" enctype="multipart/form-data">
     <div class="title">Add Movie/series</div>
 
@@ -66,32 +98,3 @@
   <?php include "./inc/footer.php" ?>
 </body>
 </html>
-
-<?php
-  if (isset($_POST['submit'])) {
-    $poster_ext=strtolower(pathinfo($_FILES['poster']['name'], PATHINFO_EXTENSION));
-    $trailer_ext=strtolower(pathinfo($_FILES['trailer']['name'], PATHINFO_EXTENSION));
-    if (in_array($poster_ext, $photo_ext) && in_array($trailer_ext, $video_ext)) {
-      $new = array('name' => $_POST['title'], 'description' => $_POST['description'], 'date' => $_POST['date']);
-      $keys_string = implode(', ', array_keys($new));
-      $keys_placeholder = ':' . implode(', :', array_keys($new));
-      $sql = (sprintf("INSERT INTO movie (%s) VALUES (%s)", $keys_string, $keys_placeholder));
-      $connection->prepare($sql)->execute($new);
-      $name=$_POST['title'];
-      $date=$_POST['date'];
-      $sql = "SELECT id FROM movie WHERE name='$name' AND date='$date'";
-      $statement =  $connection->prepare($sql);
-      $statement-> execute();
-      $id =$statement-> fetch()["id"];
-      set_image('movie',0,'poster',$id);
-      set_video($id, 'trailer');
-      set_image('photos', 1, 'photos',$id);
-      if (!$_POST['type']) {
-        $sql = "UPDATE movie SET movie=0 WHERE id=$id";
-        $connection->prepare($sql)->execute();
-      }
-      header("Location: ./view.php?id=$id");
-      exit();
-    }
-  }
-?>

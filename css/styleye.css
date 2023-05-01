@@ -1,0 +1,71 @@
+table{
+    border-collapse: collapse;
+    margin:25px 0;
+    font-size: 0.9em ;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin: auto;
+    margin-bottom: 115px;
+}
+th{
+    padding:12px 15px ;
+    border-bottom: 1px solid#212020dd;
+}
+#tr1{
+    background-color: #0f2133;
+    color:white;
+    font-size: 1.5em;
+}
+#tr2{
+    font-weight: bold;
+}
+#tr2:nth-child(even){
+    background-color: #e6e6e6;
+}
+tr:last-of-type{
+    border-bottom: 2px solid#0f2133;
+}
+#th0{
+    width: 605px;
+    font-size: 2em;
+    font-weight: lighter;
+}
+.submit{
+    background-color: #0f2133;
+    color: white;
+    font-size: 1.7em;
+    width: 400px;
+    height: 46px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-left: 633px;
+    margin-top: -196px;
+    margin-bottom: 339px;
+    font-weight: bold;
+}
+.title{
+    padding: 56px;
+    border: groove;
+    margin-top: 20px;
+    margin-left: 9px;
+    margin-bottom: 100;
+    font-weight: bold;
+    font-size: 1.7em;
+}
+.file{
+    background-color: #cca300;
+    color: rgb(0, 0, 0);
+    font-size: 2em;
+    width: 415px;
+    height: 41px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-left: 168px;
+    margin-top: 100px;
+    margin-bottom: 260px;
+    font-weight: bold;
+}

@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/styleye.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <title>Document</title>
 </head>
@@ -40,20 +41,20 @@
     ?>
   </div>
   <table>
-    <tr>
+    <tr id="tr1">
       <th>
-        images
+        Images
       </th>
       <th>
-        name
+        Name
       </th>
     </tr>
       <?php foreach($data as $value):?>
-    <tr>
+    <tr id="tr2">
       <th>
-        <img width="150px" src='<?php echo $data[$id-1]["path"]; ?>'alt='<?php echo $data[$id-1]["path"]; ?>'>
+        <img width="200px" src='<?php echo $data[$id-1]["path"]; ?>'alt='<?php echo $data[$id-1]["path"]; ?>'>
       </th>
-      <th>
+      <th id="th0">
       <?php echo $value['name']?>
       </th>
     </tr>

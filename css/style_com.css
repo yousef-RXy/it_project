@@ -1,0 +1,47 @@
+.comments{
+    padding: 30px;
+    padding-top:250px;
+    background-color: #0f2133;
+    border-radius: 8px ;
+    border: solid #0f2133 ;
+    height: 600px;
+    overflow-y:scroll ;
+  }
+  .comments h2{
+    color: white;
+  }
+  .comments h5 {
+    color: black;
+    border-radius: 8px ;
+    background-color: #cca300;
+    width:auto;
+    height: auto;
+    padding: 10px;
+    margin: 20px;
+  }
+  .com{
+    position:absolute;
+    top:970px;
+    background-color:#0f2133;
+    width: 930px;
+    height:235px;
+    padding: 30px;
+  }
+  .com textarea{
+    background-color: #343c56;
+    border-radius:8px ;
+    border: solid 2px #5e597997;
+    width: 500px;
+    color: white;
+  }
+  .com button{
+   background-color: #cca300 ;
+   padding: 5px;
+   margin: 5px;
+   border-color: gold ;
+   border-radius: 6px;
+   cursor: pointer;
+  }
+  .com button :hover{
+    background-color: yellow;
+  }

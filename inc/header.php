@@ -9,7 +9,7 @@
 <header>
     <div class="containeer">
       <div class="logo">
-      <a href="./index.php">
+      <a href="./home.php">
           Movies<br><span>&</span><span>Series</span>
       </a>
       </div>
@@ -20,9 +20,6 @@
         </li>
         <li>
           <a href="./FAQuser.php">FAQuser</a>
-        </li>
-        <li>
-          <a href="./Search.php">Search</a>
         </li>
         <?php if ($isAdmin) : ?>
           <li>

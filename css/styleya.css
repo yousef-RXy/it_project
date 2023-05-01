@@ -1,0 +1,145 @@
+body {
+    background-color: #cca300;
+}
+
+.container {
+    /* form that ask the user to ask his question*/
+    background-color: #0f2133;
+    border-style: solid;
+    border-color: #0f2133;
+    border-radius: 20px;
+    text-align: center;
+    width: 600px;
+    height: 400px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+h2 {   
+    color: white;
+    padding: 20px;
+}
+
+.ask {
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.question {
+    /* the input text */
+    padding: 10px;
+    width: 70%;
+    height: 60px;
+    border-radius: 20px;
+    border-color: #343c56;
+    border-style: solid;
+    background-color: #5e597997;
+    font-size: 20px;
+}
+
+.submit {
+    /* add question */
+    background-color: #cca300;
+    padding: 10px;
+    border-radius: 20px;
+    border-color: #cca300;
+    border-style: solid;
+    margin-top: 50px;
+    width: 200px;
+    height: 50px;
+}
+
+/* start user table */
+
+.user-caption {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.userfaq {
+    text-align: center;
+    width: 60%;
+    height: 200px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-collapse: collapse;
+    border: 1px solid #0f2133;
+    
+}
+
+.userfaq thead tr {
+    background-color: #0f2133;
+    color: white;
+}
+
+.userfaq th,
+.userfaq td {
+    padding: 12px 15px;
+    border: 1px solid #0f2133;
+}
+
+.userfaq tbody tr {
+    background-color: gray;
+}
+
+.userfaq tbody tr:nth-of-type(even) {
+    background-color: #343c56;
+}
+
+/*  end user table  */
+/*    start admin table  */
+
+.admin-caption {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-size: 30px;
+}
+
+.adminfaq {
+    text-align: center;
+    width: 60%;
+    height: 200px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-collapse: collapse;
+    border: 1px solid #0f2133;
+    
+}
+
+.adminfaq thead tr {
+    background-color: #0f2133;
+    color: white;
+}
+
+.adminfaq th,
+.adminfaq td {
+    padding: 12px 15px;
+    border: 1px solid #0f2133;
+}
+
+.adminfaq tbody tr {
+    background-color: gray;
+}
+
+textarea {
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 85%;
+    margin-left: 5px;
+    border-radius: 20px;
+}
+
+button {
+    background-color: #cca300;
+    border-radius: 10px;
+    width: 70px;
+    margin-top: 10px;
+    height: 30px;
+}
+
+/* end admin table */

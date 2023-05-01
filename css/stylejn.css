@@ -291,3 +291,8 @@ body {
 	margin-top: 8px;
 	vertical-align: middle;
 }
+
+footer {
+	background-color: var(--main-color);
+	border-top: 0px;
+}

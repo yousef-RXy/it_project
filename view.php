@@ -17,7 +17,7 @@ if ($result->num_rows > 0) {
   echo "0 results";
 }
 if(isset($_POST['rate'])) {
-  $Result = number_format(($_POST['num'] + ($rate*$num))/($num+1),1);
+  $Result = ($_POST['num'] + ($rate*$num))/($num+1);
   $new_num = $num + 1;
   $conn->query("UPDATE movie SET rating=$Result , rating_times=$new_num  WHERE id=$id");
   header("Location: ./view.php?id=$id");
@@ -32,136 +32,66 @@ else {
 <head>
   <title>Movie Title</title>
   <link rel="stylesheet" href="css/header.css">
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-    }
-
-    header {
-      background-color: #fff;
-      border-bottom: 1px solid #ddd;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    #logo {
-      font-size: 28px;
-      font-weight: bold;
-      color: #000;
-    }
-
-    main {
-      width: 90%;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-top: 40px;
-    }
-
-    #movie-details {
-      width: 60%;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    #movie-details img {
-      width: 100%;
-      height: auto;
-    }
-
-    #movie-details h1 {
-      font-size: 36px;
-      color: #000;
-      margin-top: 0;
-    }
-
-    #movie-details p {
-      font-size: 18px;
-      color: #555;
-      margin: 10px 0;
-    }
-
-    #movie-details p span {
-      font-weight: bold;
-    }
-    main img {
-      width: 400px;
-      height: 470px;
-    }
-
-    .trailer h2 {
-      font-size: 28px;
-      font-weight: bold;
-      color: #000;
-    }
-
-    .trailer iframe {
-      width: 950px;
-      height: 470px;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style_com.css">
+  <link rel="stylesheet" href="css/Styleym.css">
 </head>
 <body>
 <?php include "./inc/header.php" ?>
 
-  <header>
-    <div id="logo"><?php echo $title ?></div>
-  </header>
+<h2>
+    <?php echo $title ?>
+  </h2>
+  <div class="rate">
+    <p>rating: <span>  
+    <?php
+    echo number_format($Result,1) ;
+    ?></span> </p>
+  </div>
   <main>
-    <img src='<?php echo $poster ?>' alt="Movie Poster" class="img"> 
-    <div class="trailer">
-      <video controls src="<?php echo $Trailer ?>"></video>
-    </div>
-    <div id="movie-details">
+    <div class="Movie-Poster">
+      <img src='<?php echo $poster ?>' alt="Movie Poster" class="img">
+      <div id="movie-details">
       <h1>descraption</h1>
       <p> <?php echo $descraption ?></p>
-      <form method="POST">
+      <form action="index.php" method="POST">
         rating
-        <input type="number" min="0" max="10" step=".5" name="num" required> <br> <br>
-        <input type="submit" value="submit" name="rate">
-      </form> 
-      <br>
+        <input type="number" min="0" max="10" step=".5" name="num" > <br> <br>
+        <input type="submit" value="rate" name ="rate"> 
+      </form> <br>
       <p>date: <span><?php echo $date ?></span> </p> 
-      <p>rating: <span>
-      <?php
-        echo $Result;
-      ?></span> </p>
-      <a href="./cast.php?id=<?php echo $id; ?>">cast</a>
-      <br>
-      <?php 
-        if (!$movie) {
-          echo " 
-            <a href='./episodes.php?id=$id'>episodes</a>
-            <br>
-          ";
-        }
-      ?>
-      <a href="./photos.php?id=<?php echo $id; ?>">photos</a>
-      <br>
-      <div class="comments">
-      <?php
-          $sql = "SELECT * FROM comments_table WHERE id=$id";
-          $result = $conn -> query($sql);
-          while($row = $result-> fetch_assoc()) {
-            echo "<h2>". $row['name']."</h2>";
-            echo $row['comment'] . "<br><br>";
-          } 
-          set_comment("view",$id)
-        ?>
-        <br>
-      </div>
+    </div>    
     </div>
-  </main>
+    <div class="trailer">
+      <video  controls src="<?php echo $Trailer?>"></video>
+    </div>
+    <a href="./cast.php?id=<?php echo $id; ?>">cast</a>
+    <br>
+    <a href="./photos.php?id=<?php echo $id; ?>">photos</a>
+    <br>
+    <?php 
+    if (!$movie) {
+      echo " 
+      <a href='./episodes.php?id=$id'>episodes</a>
+      <br>
+      ";
+    }
+    ?>
+    <div class="comments">
+    <?php
+      $sql = "SELECT * FROM comments_table WHERE id=$id";
+      $result = $conn -> query($sql);
+      while($row = $result-> fetch_assoc()) {
+      echo "<h2>". $row['name']."</h2>";
+      echo "<h5>".$row['comment'] . "</h5>" ."<br>" . "<hr>"."<br><br>" ;
+      } 
+      set_comment("view",$id)
+    ?>
+    <br>
+    </div>
+  </div>
+</main>
+
+
 
   <?php include "./inc/footer.php" ?>
 </body>
