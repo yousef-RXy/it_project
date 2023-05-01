@@ -32,63 +32,51 @@ else {
 <head>
   <title>Movie Title</title>
   <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/style_com.css">
   <link rel="stylesheet" href="css/Styleym.css">
 </head>
 <body>
 <?php include "./inc/header.php" ?>
 
 <h2>
-    <?php echo $title ?>
+  <?php echo $title ?>
   </h2>
   <div class="rate">
-    <p>rating: <span>  
-    <?php
-    echo number_format($Result,1) ;
-    ?></span> </p>
+  <p>rating: <span>  
+  <?php
+  echo number_format($Result,1) ;
+  ?></span> </p>
   </div>
   <main>
-    <div class="Movie-Poster">
-      <img src='<?php echo $poster ?>' alt="Movie Poster" class="img">
-      <div id="movie-details">
-      <h1>descraption</h1>
-      <p> <?php echo $descraption ?></p>
-      <form action="index.php" method="POST">
-        rating
-        <input type="number" min="0" max="10" step=".5" name="num" > <br> <br>
-        <input type="submit" value="rate" name ="rate"> 
-      </form> <br>
-      <p>date: <span><?php echo $date ?></span> </p> 
-    </div>    
-    </div>
-    <div class="trailer">
-      <video  controls src="<?php echo $Trailer?>"></video>
-    </div>
-    <a href="./cast.php?id=<?php echo $id; ?>">cast</a>
-    <br>
-    <a href="./photos.php?id=<?php echo $id; ?>">photos</a>
-    <br>
+  <div class="Movie-Poster">
+    <img src='<?php echo $poster ?>' alt="Movie Poster" class="img">
+    <div id="movie-details">
+    <h1>descraption</h1>
+    <p> <?php echo $descraption ?></p>
+    <form method="POST">
+    rating
+    <input type="number" min="0" max="10" step=".5" name="num" > <br> <br>
+    <input type="submit" value="rate" name ="rate"> 
+    </form> <br>
+    <p>date: <span><?php echo $date ?></span> </p> 
+      <div>
+        <p><span><a href="./cast.php?id=<?php echo $id; ?>">cast</a></span></p>
+        <p><span><a href="./photos.php?id=<?php echo $id; ?>">photos</a></span></p>
+        <p><span><a href="./comment.php?id=<?php echo $id; ?>">comment</a></span></p>
+      </div>
     <?php 
-    if (!$movie) {
-      echo " 
-      <a href='./episodes.php?id=$id'>episodes</a>
-      <br>
-      ";
-    }
+      if (!$movie) {
+        echo " 
+          <a href='./episodes.php?id=$id'>episodes</a>
+          <br>
+          ";
+      }
     ?>
-    <div class="comments">
-    <?php
-      $sql = "SELECT * FROM comments_table WHERE id=$id";
-      $result = $conn -> query($sql);
-      while($row = $result-> fetch_assoc()) {
-      echo "<h2>". $row['name']."</h2>";
-      echo "<h5>".$row['comment'] . "</h5>" ."<br>" . "<hr>"."<br><br>" ;
-      } 
-      set_comment("view",$id)
-    ?>
-    <br>
-    </div>
   </div>
+  </div>  
+  <div class="trailer">
+    <video controls src="<?php echo $Trailer?>"></video>
+  </div> 
+
 </main>
 
 
