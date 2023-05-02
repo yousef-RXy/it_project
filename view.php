@@ -50,7 +50,7 @@ else {
   <div class="Movie-Poster">
     <img src='<?php echo $poster ?>' alt="Movie Poster" class="img">
     <div id="movie-details">
-    <h1>descraption</h1>
+    <h1>description</h1>
     <p> <?php echo $descraption ?></p>
     <form method="POST">
     rating
@@ -63,14 +63,13 @@ else {
         <p><span><a href="./photos.php?id=<?php echo $id; ?>">photos</a></span></p>
         <p><span><a href="./comment.php?id=<?php echo $id; ?>">comment</a></span></p>
       </div>
-    <?php 
-      if (!$movie) {
-        echo " 
-          <a href='./episodes.php?id=$id'>episodes</a>
-          <br>
-          ";
-      }
-    ?>
+      <p><span><?php 
+        if (!$movie) {
+          echo " 
+                <a href='./episodes.php?id=$id'>episodes</a>
+                <br>";
+        }
+  ?></span></p>
   </div>
   </div>  
   <div class="trailer">

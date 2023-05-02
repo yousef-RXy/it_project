@@ -1,0 +1,89 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.first {
+	height: 100%;
+	width: 100%;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+		url(../images/back1.jpg);
+	background-position: center;
+	background-size: cover;
+	position: absolute;
+}
+.title {
+	font-size: 300%;
+	margin: auto;
+	text-align: center;
+	font-family: Algerian;
+	color: #fff;
+}
+.form-group {
+	width: 20%;
+	height: 530px;
+	position: relative;
+	margin: 3% auto;
+	background: #3838a7;
+	padding: 10px;
+	right: 550px;
+	border-radius: 30px;
+	box-shadow: 5px 5px 5px 5px #838383cb;
+}
+.button-box {
+	width: 290px;
+	margin: 350px auto;
+	position: relative;
+	box-shadow: 0 0 20px 9px #fe956c72;
+	border-radius: 30px;
+	right: 2px;
+	top: 250px;
+}
+.toggle-btn {
+	padding: 10px 60px;
+	cursor: pointer;
+	background: transparent;
+	border: 0;
+	outline: none;
+	position: relative;
+	font-family: Algerian;
+	font-size: 170%;
+	left: 25px;
+	/* top: -250px; */
+}
+#btn {
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to right, #7010ffcb, #06a0ff);
+	border-radius: 30px;
+	transition: 0.5s;
+	/* top: -250px; */
+}
+.form-input {
+	top: 25px;
+	position: absolute;
+	width: 70%;
+	transition: 0.5;
+	font-family: Rockwell;
+	font-size: 99%;
+	color: #fff;
+}
+
+.input-field {
+	width: 100%;
+	padding: 10px 0;
+	margin: 5px 0;
+	border-left: 0;
+	border-top: 0;
+	border-right: 0;
+	border-bottom: 1px solid #4967ed;
+	outline: none;
+	background: transparent;
+	font-family: "Times New Roman", Times, serif;
+	color: #fff;
+}
+#sign-up {
+	left: 60px;
+}

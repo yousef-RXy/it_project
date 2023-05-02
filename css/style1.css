@@ -1,0 +1,80 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.first {
+	height: 100%;
+	width: 100%;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+		url(../images/back2.jpg);
+	background-position: center;
+	background-size: cover;
+	position: absolute;
+}
+.title {
+	font-size: 380%;
+	margin: auto;
+	text-align: center;
+	font-family: Algerian;
+}
+.form-group {
+	width: 20%;
+	height: 450px;
+	position: relative;
+	margin: 1% auto;
+	background: #4ddddddb;
+	padding: 5px;
+	right: 480px;
+	border-radius: 30px;
+	box-shadow: 5px 5px 5px 5px #ffffffcb;
+}
+.button-box {
+	width: 290px;
+	margin: 350px auto;
+	position: relative;
+	box-shadow: 0 0 20px 9px #fe956c72;
+	border-radius: 30px;
+}
+.toggle-btn {
+	padding: 10px 60px;
+	cursor: pointer;
+	background: transparent;
+	border: 0;
+	outline: none;
+	position: relative;
+	font-family: Algerian;
+	font-size: 99%;
+}
+#btn {
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to right, #7010ffcb, #06a0ff);
+	border-radius: 30px;
+	transition: 0.5s;
+}
+.form-input {
+	top: 60px;
+	position: absolute;
+	width: 70%;
+	transition: 0.5;
+	font-family: Algerian;
+	font-size: 99%;
+}
+.input-field {
+	width: 100%;
+	padding: 10px 0;
+	margin: 5px 0;
+	border-left: 0;
+	border-top: 0;
+	border-right: 0;
+	border-bottom: 1px solid #4967ed;
+	outline: none;
+	background: transparent;
+	font-family: Algerian;
+}
+#login {
+	left: 50px;
+}

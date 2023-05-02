@@ -52,7 +52,7 @@
       <?php foreach($data as $value):?>
     <tr id="tr2">
       <th>
-        <img width="200px" src='<?php echo $data[$id-1]["path"]; ?>'alt='<?php echo $data[$id-1]["path"]; ?>'>
+        <img width="200px" src='<?php echo $value["path"]; ?>'alt='<?php echo $data["path"]; ?>'>
       </th>
       <th id="th0">
       <?php echo $value['name']?>

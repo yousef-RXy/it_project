@@ -1,85 +1,75 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #d9e6ec;
- }
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	background-color: #d9e6ec;
+}
 
- header {
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-    padding: 20px;
-    display: flex;
+#logo {
+	font-size: 28px;
+	font-weight: bold;
+	color: #000;
+}
 
- }
+main {
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 40px;
+}
 
- #logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: #000;
- }
+#movie-details {
+	width: 63%;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	display: inline-block;
+}
 
- main {
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 40px;
+#movie-details h1 {
+	font-size: 36px;
+	color: #000;
+	margin-top: 0;
+}
 
- }
+#movie-details p {
+	font-size: 18px;
+	color: #555;
+	margin: 10px 0;
+}
 
- #movie-details {
-    width: 60%;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-    display: inline-block;
- }
+#movie-details p span {
+	font-weight: bold;
+}
+main img {
+	width: 410px;
+	height: auto;
+}
 
- #movie-details h1 {
-    font-size: 36px;
-    color: #000;
-    margin-top: 0;
- }
+h2 {
+	text-align: center;
+	text-transform: capitalize;
+	color: #0f2133;
+	font-size: 32px;
+}
+video {
+	width: 1200px;
+	height: auto;
+	background-color: #000;
+	margin-top: 20px;
+}
 
- #movie-details p {
-    font-size: 18px;
-    color: #555;
-    margin: 10px 0;
- }
-
- #movie-details p span {
-    font-weight: bold;
- }
- main img 
- {
-    width: 410px;
-    height: auto;
- }
-
- h2{
-    text-align: center;
-    text-transform: capitalize;
-    color: #0f2133;
-    font-size: 32px;
- }
-  video{
-    width: 100%;
-    height: auto;
-    background-color: #000;
-    margin-top: 20px;
- }
-
- .Movie-Poster{
-    display: flex;
-    gap: 20px;
-    align-items: center; 
- }
- .rate{
-    font-size: 20px;
-    font-weight: bold;
-    color: #000;
-    width: 7%;
-    margin: 0 auto;
- }
+.Movie-Poster {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+}
+.rate {
+	font-size: 20px;
+	font-weight: bold;
+	color: #000;
+	width: 7%;
+	margin: 0 auto;
+}

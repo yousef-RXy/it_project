@@ -1,6 +1,6 @@
 
 <?php
-  include './config.php';
+  require_once './config.php';
   $Username = $Password ="";
   $errors = array ("username"=>"","password"=>"");
   if(isset($_POST["log_in"])){
@@ -25,11 +25,12 @@
       $result = mysqli_query($conn,$sql);
       if($result){
         $num = mysqli_num_rows($result);
+        $result = $result->fetch_assoc();
         if($num>0){
           echo "Log in successfully";
-          $row = $result->fetch_assoc();
-          $_SESSION["id"] = $row["id"];
-          header('location: ./home.php');
+          session_start();
+          $_SESSION["id"] =  $result["id"];
+          header('location:home.php');
         } else{
           echo "Incorrect Data!";
       }
@@ -44,34 +45,40 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Log in page</title>
+  <link rel="stylesheet" href="css/style1.css">
 </head>
 <body>
-  <div class="container my-5">
-    <form action="index.php" method="post">
+  <div class="first">
+  <div class= "title">Welcome to Netfilm.</div>
+    <form action="index.php" method="post" >
       <div class = "form-group">
-        <label><b>Username:</b></label><br> 
-        <input  type="text" placeholder="Enter the Username" 
-          name="username" class="form-control" 
-          autocomplete="off" value="<?php echo $Username?>"><br> 
-        <div class="red-text"><?php echo htmlspecialchars($errors['username']); ?></div>
+        <div class = "form-input" id="login">
+          <label><b><u>Username:</u></b></label><br> 
+          <input  type="text" placeholder="Enter the Username" 
+              name="username" class="input-field" 
+              autocomplete="off" value="<?php echo $Username?>"><br> 
+          <div class="red-text"><?php echo htmlspecialchars($errors['username']); ?></div> <br><br>
+          <label> <u><b>Password:</b></u></label><br> 
+          <input  type="password" placeholder="Enter the password" 
+              name="password" class="input-field" 
+              autocomplete="off" id="login" ><br>
+          <div class="red-text"><?php echo htmlspecialchars($errors['password']); ?></div>
       </div>
-      <div class = "form-group">
-        <label><b>Password:</b></label><br> 
-        <input  type="password" placeholder="Enter the password" 
-          name="password" class="form-control" 
-          autocomplete="off" ><br>
-        <div class="red-text"><?php echo htmlspecialchars($errors['password']); ?></div>
-    </div>  
-    <div class = "form-group">
-      <input type="submit"  value="log in" name = "log_in">
-    </div>
+        <div class="button-box">
+          <div id="btn"></div>
+            <div class = "form-input-btn">
+              <input type="submit"  value= "log in" name = "log_in" class="toggle-btn"  style="text-decoration: underline;" >
+            </div>
+            </form>
+          <form action="register.php" method="post">
+            <div class = "form-input-btn">
+              <input type="submit" name = "signup/register" value="signup/register" class="toggle-btn"  >
+            </div>
+            </div>
     </form>
-  <form action="register.php" method="post">
-    <div class = "form-group">
-      <input type="submit" name = "signup/register" value="signup/register" >
-    </div>
-  </form>
+  </div>
+  </div>
   <br>
 </body>
 </html>
