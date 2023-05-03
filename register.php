@@ -1,5 +1,11 @@
 <?php
-  require_once './config.php';
+require_once './config.php';
+  function insertToDatabase($Username,$Password,$Email,$Type){
+    global $conn;
+    $sql =  "insert into `users`(username,password,email,admin)
+        VALUES ('$Username','$Password','$Email','$Type')";
+      return mysqli_query($conn,$sql);
+  }
   $Username = $Password = $Email = $Pass_conf = "";
   $errors = array ("username"=>"","password"=>"","email"=>"","password_Confirmation"=>"");
   if(isset($_POST["Register"])){
@@ -52,9 +58,7 @@
         if($num>0){
           echo "This Username is already exist";
         } else{
-          $sql =  "insert into `users`(username,password,email,Admin_User)
-        VALUES ('$Username','$Password','$Email','$Type')";
-      $result = mysqli_query($conn,$sql);
+      $result = insertToDatabase($Username,$Password,$Email,$Type);
       if($result){
       echo "the register is completed successfully";
       header("location: index.php");

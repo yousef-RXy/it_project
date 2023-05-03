@@ -6,14 +6,17 @@
 function getId($title)
 {
   global $conn;
+  $title = strtolower($title);
   $sql = "SELECT id FROM movie WHERE name='$title'";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
 
   return $row['id'] ?? 0;
 }
-
-if (isset($_GET["submit"])) {
+$id = 0;
+$idError = '';
+function filterTitleAndHandleId(){
+  global $id ,$idError;
   $title = filter_input(
     INPUT_GET,
     'search',
@@ -27,6 +30,10 @@ if (isset($_GET["submit"])) {
     
     $idError = "<p style='font-size: 18px;font-weight:bold;margin:15px 0;color:red;'>There is no movie or series with title $title</p>";
   }
+}
+
+if (isset($_GET["submit"])) {
+  filterTitleAndHandleId();
 }
 ?>
 

@@ -1,8 +1,18 @@
 <?php 
 require_once './config.php';
+
 $id=$_GET['id'];
-$sql = "SELECT * FROM movie WHERE id=$id";
-$result = $conn->query($sql);
+function getRate(){
+  global $conn,$id;
+  $sql = "SELECT * FROM movie WHERE id=$id";
+  return  $conn->query($sql);
+}
+function updateRate($Result,$new_num,$id){
+  global $conn;
+  $conn->query("UPDATE movie SET rating=$Result , rating_times=$new_num  WHERE id=$id");
+    header("Location: ./view.php?id=$id");
+}
+$result = getRate();
 if ($result->num_rows > 0) {
   $row = $result->fetch_assoc();
   $rate = $row["rating"];
@@ -17,11 +27,15 @@ if ($result->num_rows > 0) {
   echo "0 results";
 }
 if(isset($_POST['rate'])) {
-  $Result = ($_POST['num'] + ($rate*$num))/($num+1);
-  $new_num = $num + 1;
-  $conn->query("UPDATE movie SET rating=$Result , rating_times=$new_num  WHERE id=$id");
-  header("Location: ./view.php?id=$id");
-  exit();
+  if (empty($_POST['num'])) {
+    echo "the rating is empty";
+    $Result=$rate;
+  } else {
+    $Result = ($_POST['num'] + ($rate*$num))/($num+1);
+    $new_num = $num + 1;
+    updateRate($Result,$new_num,$id);
+    exit();
+  }
 }
 else {
   $Result=$rate;
@@ -55,7 +69,7 @@ else {
     <form method="POST">
     rating
     <input type="number" min="0" max="10" step=".5" name="num" > <br> <br>
-    <input type="submit" value="rate" name ="rate"> 
+    <input type="submit" value="rate" name ="rate" > 
     </form> <br>
     <p>date: <span><?php echo $date ?></span> </p> 
       <div>

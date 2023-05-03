@@ -34,22 +34,30 @@ function updateuserdata(){
   $statement-> execute();
   $user_all =$statement-> fetchAll();
   if (empty($user_all)&&($userset['username']!=$username||$userset['email']!=$email)) {
-    $userset['username'] = $_POST['username'];
-    $userset['email'] = $_POST['email'];
-    if(filter_var($userset['email'], FILTER_VALIDATE_EMAIL)){
-      if(preg_match('/^[a-zA-Z0-9]+$/',$userset['username'])){
-        $sql = "UPDATE users SET username=:username ,email=:email WHERE id=:id";
-        $statement = $connection->prepare($sql);
-        $statement->execute($userset);
-        header("Location: ./data.php");
-        exit();
+    if (empty($username)) {
+      message("the user name is empty","red");
+    } else {
+      if (empty($email)) {
+        message("the user email is empty", "red");
+      } else {
+        $userset['username'] = $_POST['username'];
+        $userset['email'] = $_POST['email'];
+        if(filter_var($userset['email'], FILTER_VALIDATE_EMAIL)){
+          if(preg_match('/^[a-zA-Z0-9]+$/',$userset['username'])){
+            $sql = "UPDATE users SET username=:username ,email=:email WHERE id=:id";
+            $statement = $connection->prepare($sql);
+            $statement->execute($userset);
+            header("Location: ./data.php");
+            exit();
+          }
+          else{
+            message("this user name must contain just letters and numpers", "red");
+          }
+        }
+        else{
+          message("the email is not valid", "red");
+        }
       }
-      else{
-        message("this user name must contain just letters and numpers", "red");
-      }
-    }
-    else{
-      message("the email is not valid", "red");
     }
   }
   else{
@@ -129,7 +137,7 @@ function set_comment($page,$id_page){
   echo ('
     <div class ="com">
     <form action="" method="POST">
-      <textarea name="comment" cols="30" rows="10" class="comment" placeholder="type your comment..." required></textarea>
+      <textarea  name="comment" cols="30" rows="10" class="comment" placeholder="type your comment..." ></textarea>
       <br>
       <button type="submit" class="button" name="post_comment" >POST</button>
     </form>

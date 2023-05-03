@@ -24,18 +24,22 @@
   <?php
     $check=0;
     if (isset($_POST['submit'])) {
-      for ($x = 0; $x < sizeof($_FILES['photos']['name']); $x++) {
-        $file_name = $_FILES['photos']['name'][$x];
-        if (!file_ex($photo_ext, $file_name, 'photos')) {
-          $check++;
-        }
-      }
-      if ($check != 0) {
-        message("the extention of the file is not valid", "red");
+      if (empty($_FILES['photos']['name'])) {
+        message("the photo field is empty", "red");
       } else {
-        set_image('photos', 1, 'photos',$id);
-        header("Location: ./photos.php?id=$id");
-        exit();
+        for ($x = 0; $x < sizeof($_FILES['photos']['name']); $x++) {
+          $file_name = $_FILES['photos']['name'][$x];
+          if (!file_ex($photo_ext, $file_name, 'photos')) {
+            $check++;
+          }
+        }
+        if ($check != 0) {
+          message("the extention of the file is not valid", "red");
+        } else {
+          set_image('photos', 1, 'photos',$id);
+          header("Location: ./photos.php?id=$id");
+          exit();
+        }
       }
     }
   ?>
@@ -46,7 +50,7 @@
     <div class="file">
       <span class="material-symbols-outlined"> upload </span>
       <label class="file__lable" for="photos">Add photos</label>
-      <input class="file__input" type="file" name="photos[]" value="" multiple required/>
+      <input class="file__input" type="file" name="photos[]" value="" multiple>
     </div>
 
     <input class="submit" type="submit" name="submit" value="Upload">

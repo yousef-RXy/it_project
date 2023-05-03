@@ -1,7 +1,27 @@
 
 <?php
   require_once './config.php';
+
   $Username = $Password ="";
+  function any(){
+    global $conn;
+    $Username = mysqli_real_escape_string($conn,$_POST['username']);
+      $Password = mysqli_real_escape_string($conn,$_POST['password']);
+      $sql =  "SELECT * FROM `users` WHERE `username` = '$Username' and `password` = '$Password' ";
+      $result = mysqli_query($conn,$sql);
+      if($result){
+        $num = mysqli_num_rows($result);
+        $result = $result->fetch_assoc();
+        if($num>0){
+          echo "Log in successfully";
+          session_start();
+          $_SESSION["id"] =  $result["id"];
+          header('location:home.php');
+        } else{
+          echo "Incorrect Data!";
+      }
+    }
+  }
   $errors = array ("username"=>"","password"=>"");
   if(isset($_POST["log_in"])){
     if(empty($_POST["username"])){
@@ -19,22 +39,8 @@
     }
     if (array_filter($errors)){
     } else{
-      $Username = mysqli_real_escape_string($conn,$_POST['username']);
-      $Password = mysqli_real_escape_string($conn,$_POST['password']);
-      $sql =  "SELECT * FROM `users` WHERE `username` = '$Username' and `password` = '$Password' ";
-      $result = mysqli_query($conn,$sql);
-      if($result){
-        $num = mysqli_num_rows($result);
-        $result = $result->fetch_assoc();
-        if($num>0){
-          echo "Log in successfully";
-          session_start();
-          $_SESSION["id"] =  $result["id"];
-          header('location:home.php');
-        } else{
-          echo "Incorrect Data!";
-      }
-    }}}
+      any();
+      }}
   if(isset($_POST["signup/register"])){
     header("location: register.php");
   }

@@ -1,8 +1,12 @@
 <?php require_once('config.php') ?>
 
 <?php
+function selectQuestions(){
+  global $conn;
   $sql = "SELECT * FROM faq ORDER BY id DESC";
-  $result = mysqli_query($conn , $sql);
+  return mysqli_query($conn , $sql);
+}
+$result = selectQuestions()
 ?>
 
 <html lang="en">
@@ -28,29 +32,43 @@
     </thead>
     <tbody>
       <?php
-        if(mysqli_num_rows($result) > 0){
-          while($row = mysqli_fetch_assoc($result)){
-            if($row["ans"] == null){
-              $id = $row['id'];
-              $q = $row['q'];
-              echo("
-                <tr>
-                  <td>$q</td>
-                  <td><form action='FAQadmin.php' method='post'>
-                    <textarea name='ans' id='ans' cols='30' rows='5' required placeholder='entre your answer here...'></textarea><br>
-                    <button name='add_answer' value='$q'>submit</button>
-                  </form></td>
-                <tr>
-              ");
-        }}}
-        if (isset($_POST['add_answer'])) {
-          $ans = $_POST["ans"];
-          $q = $_POST["add_answer"];
-          $sql = "UPDATE faq SET ans='$ans' WHERE q='$q'";
-          mysqli_query($conn , $sql);
-          header("Location: ./FAQadmin.php");
-          exit();
+        function checkAnswerQuestions(){
+          global $conn, $result;
+          if(mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_assoc($result)){
+              if($row["ans"] == null){
+                $id = $row['id'];
+                $q = $row['q'];
+                echo("
+                  <tr>
+                    <td>$q</td>
+                    <td><form action='FAQadmin.php' method='post'>
+                      <textarea name='ans' id='ans' cols='30' rows='5' placeholder='entre your answer here...'></textarea><br>
+                      <button name='add_answer' value='$q'>submit</button>
+                    </form></td>
+                  <tr>
+                ");
+          }}}
+          if (isset($_POST['add_answer'])) {
+            if(empty($_POST['ans'])){
+              echo '<div style = "color: red;
+                                  text-align: center;
+                                  width: fit-content;
+                                  margin: auto;
+                                  margin-top: 50px;
+                                  font-size: xx-large;">please add an answer</div>';
+            }
+            else{
+              $ans = $_POST["ans"];
+              $q = $_POST["add_answer"];
+              $sql = "UPDATE faq SET ans='$ans' WHERE q='$q'";
+              mysqli_query($conn , $sql);
+              header("Location: ./FAQadmin.php");
+              exit();
+            }
+          }
         }
+        checkAnswerQuestions();
       ?>
     </tbody>
   </table>

@@ -20,36 +20,46 @@
 <body>
   <?php include "./inc/header.php" ?>
 
+  <?php
+  if (isset($_POST['submit'])) {
+    if (empty($_POST['name'])) {
+      message("the name is empty","red");
+    } else {
+      if (empty($_POST['role'])) {
+        message("the role is empty","red");
+      }
+      else {
+        $new = array('id'=>$id, 'name' => $_POST['name'], 'role' => $_POST['role']);
+        $keys_string = implode(', ', array_keys($new));
+        $keys_placeholder = ':' . implode(', :', array_keys($new));
+        $sql = (sprintf("INSERT INTO cast (%s) VALUES (%s)", $keys_string, $keys_placeholder));
+        $connection->prepare($sql)->execute($new);
+        header("Location: ./cast.php?id=$id");
+        exit();
+      }
+    }
+  }
+?>
+
   <form class="form" action="" method="POST" enctype="multipart/form-data">
     <div class="title">Add cast to<span class="film-name"><?php echo $title ?></span></div>
 
     <div style="margin-top: 40px" class="input-container" >
-      <input name="name" class="input" type="text" placeholder=" " required/>
+      <input name="name" class="input" type="text" placeholder=" " >
       <div style="width: 55px" class="cut"></div>
       <label for="name" class="placeholder">name</label>
     </div>
 
     <div class="input-container">
-      <input name="role" class="input" type="text" placeholder=" " required/>
+      <input name="role" class="input" type="text" placeholder=" " >
       <div style="width: 43px" class="cut"></div>
       <label for="role" class="placeholder">role</label>
     </div>
 
-    <input class="submit" type="submit" name="submit" value="Upload">
+    <input class="submit" type="submit" name="submit" value="Upload" >
   </form>
 
   <?php include "./inc/footer.php" ?>
 </body>
 </html>
 
-<?php
-  if (isset($_POST['submit'])) {
-    $new = array('id'=>$id, 'name' => $_POST['name'], 'role' => $_POST['role']);
-    $keys_string = implode(', ', array_keys($new));
-    $keys_placeholder = ':' . implode(', :', array_keys($new));
-    $sql = (sprintf("INSERT INTO cast (%s) VALUES (%s)", $keys_string, $keys_placeholder));
-    $connection->prepare($sql)->execute($new);
-    header("Location: ./cast.php?id=$id");
-    exit();
-  }
-?>
